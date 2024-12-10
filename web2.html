@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Galeri Foto Andika</title>
+   
+
+    <style>
+        /* Mengatur margin, padding, dan box-sizing */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Styling untuk body */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #eaeaea;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Styling untuk header */
+        header {
+            background-color: #444;
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+        }
+
+        /* Menata galeri foto dengan Flexbox */
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .photo {
+            width: 280px;
+            height: 200px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer; /* Menunjukkan bahwa gambar dapat diklik */
+        }
+
+        .photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        /* Efek hover: Membesarkan gambar dan memberi efek bayangan */
+        .photo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Styling untuk footer */
+        footer {
+            text-align: center;
+            background-color: #444;
+            color: white;
+            padding: 1rem 0;
+            margin-top: 40px;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+        }
+
+        /* Styling untuk modal */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: none; /* Modal tersembunyi secara default */
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .modal img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+        }
+
+        /* Tombol tutup modal */
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2rem;
+            color: white;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>Galeri Foto</h1>
+    </header>
+
+    <!-- Galeri Foto -->
+    <section class="gallery">
+        <div class="photo" onclick="openModal('1.jpg')">
+            <img src="1.jpg" alt="Foto 1">
+        </div>
+        <div class="photo" onclick="openModal('2.jpg')">
+            <img src="2.jpg" alt="Foto 2">
+        </div>
+        <div class="photo" onclick="openModal('3.jpg')">
+            <img src="3.jpg" alt="Foto 3">
+        </div>
+        <div class="photo" onclick="openModal('4.jpg')">
+            <img src="4.jpg" alt="Foto 4">
+        </div>
+        <!-- Tambahkan lebih banyak foto jika diperlukan -->
+    </section>
+
+    <!-- Modal -->
+    <div class="modal" id="modal">
+        <button class="modal-close" onclick="closeModal()">X</button>
+        <img id="modal-image" src="" alt="Foto Besar">
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>MAAP YA GAJELAS WKWKWKKWKWKW.</p>
+    </footer>
+
+    <script>
+        // Fungsi untuk membuka modal dan menampilkan gambar yang diklik
+        function openModal(imageSrc) {
+            const modal = document.getElementById('modal');
+            const modalImage = document.getElementById('modal-image');
+            modal.style.display = 'flex';
+            modalImage.src = imageSrc;
+        }
+
+        // Fungsi untuk menutup modal
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.style.display = 'none';
+        }
+
+        // Menutup modal jika pengguna mengklik area luar gambar
+        window.addEventListener('click', function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+    </script>
+
+</body>
+</html>
+
+
